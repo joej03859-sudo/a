@@ -2,7 +2,10 @@ FROM archlinux
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm openssh && \
     pacman -Scc --noconfirm && \
-    pacman -S --noconfirm nano base-devel git wget curl
+    pacman -S --noconfirm nano base-devel git wget curl docker
+    cd
+    echo "cd \
+    PS1='$(dirs) $'" > .bash_profile
 RUN systemctl enable sshd
 EXPOSE 22
 CMD ["/usr/bin/sshd", "-D"]
